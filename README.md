@@ -26,3 +26,10 @@ Usage
 2. Enter the following for your URL:
 
 ##### http://[your-app-name].herokuapp.com/[your-api-key]/[your-workspace-id]
+
+Results
+-------
+
+If everything goes right, it should look similar to this
+
+![Expected Results](http://f.cl.ly/items/1S2o0B061a0e0r1N2G0P/photo.JPG)
