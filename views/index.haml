@@ -1,0 +1,54 @@
+:scss
+	$red: rgb(255, 48, 0);
+	$gray: rgb(174, 183, 188);
+	$darkgray: rgb(100, 112, 118);
+	$green: rgb(0, 186, 0);
+	$blue: rgb(0, 108, 230);
+	$yellow: rgb(255,198,0);
+
+	.notes { color: $gray; background-color: #222; }
+	.done { color: white; background-color: $green; }
+	.waiting { color: white; background-color: $yellow; }
+	.queued { color: $darkgray; }
+
+	.archived { color: $gray; opacity: .5; }
+	.archived.done { color: white; }
+
+	.blank { opacity: .5; }
+
+	.name { width: 450px; text-align: right; }
+	.notes { text-align: center; }
+
+%table
+	- @projects.each do |project|
+
+		- if not project.fetch("archived")
+
+			%tr
+
+				- if project.fetch("notes").downcase.include? 'queued' or project.fetch("notes").downcase.include? 'on hold'
+					%td.name.queued= project.fetch("name")
+				- else
+					%td.name= project.fetch("name")
+
+				- if project.fetch("notes").downcase.include? 'done' or project.fetch("notes").downcase.include? 'to print'
+					%td.notes.done= project.fetch("notes")
+				- elsif project.fetch("notes").downcase.include? 'waiting' or project.fetch("notes").downcase.include? 'proofed' or project.fetch("notes").downcase.include? 'comps sent'
+					%td.notes.waiting= project.fetch("notes")
+				- elsif project.fetch("notes").downcase.include? 'queued' or project.fetch("notes").downcase.include? 'on hold'
+					%td.notes.queued= project.fetch("notes")
+				- else
+					%td.notes= project.fetch("notes")
+
+	- @projects.sort_by { |project| project.fetch("modified_at") }.reverse.each do |project|
+		
+		- if project.fetch("archived")
+
+			%tr
+
+				%td.name.archived= project.fetch("name")
+
+				- if project.fetch("notes").downcase.include? 'done' or project.fetch("notes").downcase.include? 'to print'
+					%td.notes.archived.done= project.fetch("notes")
+				- else
+					%td.notes.archived= project.fetch("notes")
