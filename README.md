@@ -37,3 +37,7 @@ Results
 If everything goes right, it should look similar to this
 
 ![Expected Results](http://f.cl.ly/items/1S2o0B061a0e0r1N2G0P/photo.JPG)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sheck/asana-statusboard/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
